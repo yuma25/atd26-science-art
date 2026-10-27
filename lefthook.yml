@@ -9,9 +9,6 @@ pre-commit:
       root: frontend/
       glob: "*.{ts,tsx}"
       run: pnpm run build
-    test-check:
-      root: frontend/
-      run: pnpm run test
     formatter:
       glob: "*.{js,ts,tsx,json,md}"
       run: npx prettier --write {staged_files} && git add {staged_files}

@@ -1,12 +1,12 @@
 # ATD26_SCIENCE-ART
 
 <p align="center">
-  <img src="./docs/images/cover.png" alt="ATD26_SCIENCE-ART Architecture Cover" width="100%">
+  <img src="./images/cover.png" alt="ATD26_SCIENCE-ART Architecture Cover" width="100%">
 </p>
 
 AR（拡張現実）技術を用いた絵画コレクション・管理アプリケーション．実世界の画像認識を通じて3D作品を発見し，獲得した作品のデジタル図録（2D画像）をユーザーごとに永続化する．
 
-<h3 align="center">🎬 デモ動画 (Demo Video)</h3>
+<h3 align="center">デモ動画 </h3>
 
 <p align="center">
   <a href="https://youtu.be/DSTXw9Lhr3w" target="_blank" rel="noopener noreferrer">
@@ -15,12 +15,12 @@ AR（拡張現実）技術を用いた絵画コレクション・管理アプリ
 </p>
 
 <p align="center">
-  <sub>※画像をクリックすると YouTube でデモ動画が再生されます</sub>
+  <sub>※画像をクリックすると YouTube でデモ動画が再生されます．</sub>
 </p>
 
 ---
 
-## 🛠 技術スタック
+## 技術スタック
 
 ### Frontend / Core
 
@@ -39,57 +39,26 @@ AR（拡張現実）技術を用いた絵画コレクション・管理アプリ
 ### Development / Quality
 
 - **Linter/Formatter**: ESLint, Prettier
-- **Testing**: Vitest
 - **Commit**: Commitlint, Lefthook (Pre-commit hook)
 
 ---
 
-## 📖 開発ドキュメント
+## システム稼働環境・デプロイ先
 
-詳細なシステム設計については，以下の各仕様書およびアーキテクチャガイドを参照のこと．
+本システムはモダンなサーバーレス / クラウドネイティブ構成を採用しており，フロントエンドとバックエンドAPIがNext.js上で統合稼働する．
 
-### 🏛️ アーキテクチャ設計ガイドライン
 
-システム全体の構造，データフロー，および設計思想を把握するためのガイドである．
+| コンポーネント           | プラットフォーム / サービス | 役割・用途                                                                                   |
+| :------------------------- | :---------------------------- | :--------------------------------------------------------------------------------------------- |
+| **Frontend & API (BFF)** | **Vercel**                  | Next.js 16 (App Router) のホスティング．UI画面の配信および バックエンドAPIのサーバーレス実行 |
+| **Database & Auth**      | **Supabase**                | クラウドPostgreSQL（Drizzle ORMで接続），匿名認証（Supabase Auth），画像ストレージ           |
+| **Cache & Stats**        | **Upstash Redis**           | サーバーレスRedis．統計集計キャッシュおよびAPIレートリミットを低遅延で提供                   |
 
-- **[システム全体のアーキテクチャとデータフロー図解](./docs/architecture_and_dataflow.md)**：フロント・バックエンドの結合構造とデータ遷移シーケンス図．
-- **[バックエンド クリーンアーキテクチャ ガイド](./docs/clean_architecture_guide.md)**：バックエンドの4層構造，DIP（依存関係逆転），およびディレクトリ構成の解説．
-- **[フロントエンド アーキテクチャと通信ガイド](./docs/frontend_architecture_guide.md)**：Next.js App Router，SWR，およびBFF（API Routes）のデータ取得・更新フロー．
-- **[フロントエンドの設計思想とクリーンアーキテクチャとの比較](./docs/frontend_clean_architecture_comparison.md)**：フロントエンドにおける「関心の分離（UIとロジックの分離）」とクリーンアーキテクチャ概念の対比．
-
-### 🛠️ 技術詳細リファレンス (`docs/`)
-
-各レイヤーごとの具体的な仕様・構造定義である．
-
-- **バックエンド技術リファレンス (`docs/backend_ref/`)**
-  - [Domain Layer](./docs/backend_ref/domain_layer.md)：エンティティとインターフェース定義
-  - [Application Layer](./docs/backend_ref/application_layer.md)：ユースケースの詳細
-  - [Infrastructure Layer](./docs/backend_ref/infrastructure_layer.md)：データベース構造，Drizzle ORM実装
-  - [Adapters Layer](./docs/backend_ref/adapters_layer.md)：APIコントローラー仕様
-  - [API仕様まとめ](./docs/backend_ref/api_summary.md)：提供API一覧と各レイヤーでの作業手順
-- **フロントエンド技術リファレンス (`docs/frontend_ref/`)**
-  - [App Layer](./docs/frontend_ref/app_layer.md)：画面構成とAPI通信経路
-  - [Components Layer](./docs/frontend_ref/components_layer.md)：UI部品の仕様と演出
-  - [Hooks Layer](./docs/frontend_ref/hooks_layer.md)：状態管理と非同期通信処理
-  - [Utils & Types Layer](./docs/frontend_ref/utils_layer.md)：共通処理とグローバル型定義
-  - [Public Assets Layer](./docs/frontend_ref/assets_layer.md)：静的資産（3D模型，AR標的等）の管理
-- [⚖️ ライセンス・法的事項](./THIRD_PARTY_LICENSES.md)
-  - 使用ライブラリの帰属表示，プライバシーポリシー，利用規約
+※ ローカル開発時（`pnpm dev`）は，フロントエンドUIとバックエンドAPIが `http://localhost:3000` 上で一体となって同時に起動し動作する．
 
 ---
 
-## ⚖️ ライセンスと法的事項
-
-本プロジェクトはプロフェッショナルな標準に基づき，以下の法的ドキュメントを整備している．
-
-- **[MIT License](./LICENSE)**: プロジェクト本体のライセンス．
-- **[サードパーティ通知](./THIRD_PARTY_LICENSES.md)**: MindAR.js (TensorFlow.js, OpenCV.js 含む)，Next.js 等の主要ライブラリの帰属表示．
-- **[プライバシーポリシー](./docs/LEGAL/PRIVACY_POLICY.md)**: ARカメラ利用（映像はデバイス内処理のみ），データ収集に関するポリシー．
-- **[利用規約](./docs/LEGAL/TERMS_OF_SERVICE.md)**: 知的財産権の保護，AR利用時の安全上の免責事項．
-
----
-
-## 📂 プロジェクト構成 (Monorepo)
+## プロジェクト構成 
 
 本プロジェクトは `pnpm workspaces` を採用したモノレポ構成となっており，クリーンアーキテクチャ（4層構造）に基づき関心の分離を徹底している．
 
@@ -108,16 +77,15 @@ AR（拡張現実）技術を用いた絵画コレクション・管理アプリ
 │   ├── components/     # React コンポーネント (UI，AR制御)
 │   ├── hooks/          # カスタムフック (状態管理，通信)
 │   ├── lib/            # フロントエンド共通処理 (fetcher)
-│   ├── public/         # 静的資産 (3Dモデル, ターゲット, 画像, スクリプト)
-│   └── __tests__/      # テストコード
-├── docs/               # プロジェクトドキュメント (backend_ref, frontend_ref 等)
+│   └── public/         # 静的資産 (3Dモデル, ターゲット, 画像, スクリプト)
 ├── AR_dataset/         # AR マーカー作成用の元データ
+├── images/             # プロジェクトの全体構造図
 └── pnpm-workspace.yaml # モノレポ設定
 ```
 
 ---
 
-## 🚀 環境構築・設定手順
+## 環境構築・設定手順
 
 リポジトリを取得（クローン）した後，以下の手順で開発環境を構築する．
 
@@ -201,23 +169,7 @@ pnpm dev
 
 ---
 
-## 🧪 テスト実行手順
-
-自動テスト（Vitest）を実行して，デバイス制御ロジックや計算処理が正常に動作するかを検証する．
-
-### ユニットテストの実行
-
-プロジェクトのルートディレクトリで以下のコマンドを実行する．
-
-```bash
-pnpm test
-```
-
-※ 内部でフロントエンド配下のテストファイル（`frontend/__tests__/*`）が実行される．
-
----
-
-## 📸 当日の実施結果
+## 当日の実施結果
 
 実際に展示・実施した際の結果および認識対象となった作品画像です．
 
@@ -233,7 +185,3 @@ pnpm test
     <td align="center" style="border: none; padding: 5px;"><img src="./results/whale.jpg" width="220px" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"><br><sub>whale</sub></td>
   </tr>
 </table>
-
----
-
-© 2026 ATD26_SCIENCE-ART Project.

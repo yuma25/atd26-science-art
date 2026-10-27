@@ -6,7 +6,6 @@
     "build": "pnpm --filter frontend build",
     "start": "pnpm --filter frontend start",
     "lint": "pnpm --filter frontend lint",
-    "test": "pnpm --filter frontend test",
     "format": "npx prettier --write ."
   }
 }

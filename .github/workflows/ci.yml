@@ -2,7 +2,7 @@ name: CI/CD (ATD26)
 
 on:
   push:
-    branches: [main, master, fix/camera-play-mark]
+    branches: [main, master]
   pull_request:
     branches: [main, master]
 
